@@ -1,0 +1,63 @@
+package edu.umb.cs680.hw05;
+
+import LocalDateTime;
+
+public class Directory extends FSElement {
+
+    LinkedList<FSElement> children;
+
+    private Directory(Directory parentDir,
+                      String name,
+                      LocalDateTime creationTime) {
+        // why not get creationTime as time of constructor call?
+        // creationTime = LocalDateTime.now();
+        super(name, 0, parentDir, creationTime);
+        this.children = new LinkedList<FSElement>();
+        this.childDirectories = new LinkedList<Directory>();
+        this.childFiles = new linkedList<File>();
+    }; 
+
+
+
+    public LinkedList<FSElement> getChildren() {
+        return this.children;
+    }
+
+    private void appendChild(Directory childDir) {
+        this.childDirectories.add(childDir);
+        this.children.add(childDir);
+    }
+
+    public void appendChild(File child) {
+        this.childFiles.add(childFile);
+        this.children.add(child);
+    }
+
+    public int countChildren() {
+        return self.children.size();
+    }
+
+    public LinkedList<Directory> getSubDirectories() {
+        return self.childDirectories;
+    }
+
+    public LinkedList<File> getFiles() {
+        return self.childFiles;
+    }
+
+    public getTotalSize() {
+        int fileSum = getFiles().stream().mapToInt(f->f.getSize()).sum();
+        int dirSum = getSubDirectories().stream().mapToInt(d->d.getTotalSize());
+        return fileSum + dirSum + self.getSize();
+    }
+
+    public boolean isDirectory() {
+        return true;
+    }
+
+    public static void main(String args[]) {
+        System.out.printf("%s",
+                          getName());
+    }
+}
+

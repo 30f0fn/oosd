@@ -1,0 +1,75 @@
+package edu.umb.cs680.hw07;
+
+import java.util.LinkedList;
+
+
+public abstract class ApfsShell {
+    private ApfsDirectory pwd;
+
+    public ApfsShell() {
+        pwd = Apfs.getFileSystem().getRoot;
+    }
+
+    public void cd(String dirName) {
+        if (dirname == "..") {
+            if (pwd.getParent() != null) {
+                pwd = pwd.getParent();
+            }
+            else {
+                throw new RunTimeException(String.format("pwd %se has no parent directory",
+                                                         pwd.getName()));
+            }
+        } else {
+            ApfsDirectory childDir = pwd.getChild(dirName, ApfsDirectory);
+            if (childDir != null) {
+                pwd = childDir;
+            }
+            else {
+                throw new RuntimeException(String.format("directory %s does not exist",
+                                                         dirName));
+            }
+        }
+    }
+
+    private ApfsElement getChild(string elemName, Class c) {
+        for (ApfsElement elem: pwd.getChildren()) {
+            if (elem.getName() == elemName && elemName instanceof c) {
+                return elem;
+            }           
+        }
+        return null;
+    }
+
+    public void rm(String fileName) {
+        ApfsFile file = pwd.getChild(fileName, ApfsFile);
+        if (file != null) {
+            Apfs.getFileSystem().delete(file);
+        }
+        else {
+            throw new RuntimeException(String.format("file %s does not exist",
+                                                     dirName));
+        }
+    }
+
+    public void rmDir(String dirName) {
+        ApfsDirectory dir = pwd.getChild(dirName, ApfsDirectory);
+        if (dir != null && dir.isEmpty()) {
+            Apfs.getFileSystem().delete(dir);
+        }
+        else if (! dir.isEmpty()){
+            throw new RuntimeException(String.format("directory %s is not empty",
+                                                     dirName));
+        } else {
+            throw new RuntimeException(String.format("directory %s does not exist",
+                                                     dirName));
+        }
+    }
+
+
+    //todo    // public int getUsed() {
+        // return this.
+    // }
+    public static void main(String args[]) {
+    }
+
+}

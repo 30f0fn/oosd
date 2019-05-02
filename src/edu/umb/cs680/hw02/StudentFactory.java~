@@ -1,0 +1,16 @@
+
+public class studentFactory {
+    private static studentFactory() {}
+
+
+    public static Student createInternationalStudent(str name) {
+        Student student = new Student(name=name);
+    }
+    public static Student createInStateStudent(str name) {
+        Student student = new Student(name=name);
+    }
+    public static Student createOutOfStateStudent(str name) {
+        Student student = new Student(name=name);        
+    }
+
+}

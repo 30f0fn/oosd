@@ -1,0 +1,31 @@
+package edu.umb.cs680.hw14;
+
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.stream.Stream;
+import java.util.function.BiFunction;
+
+class CarParetoCompBuilder {
+
+    LinkedList<Comparator<Car>> simpleComps;
+
+    protected CarParetoCompBuilder() {
+        simpleCompFcns = new LinkedList<BiFunction<Car, Car, Integer>>();
+    }
+
+    protected void addComparator(BiFunction<Car, Car, Integer> compFcn) {
+        simpleCompFcns.add(comp);
+    }
+
+    protected BiFunction<Car, Car, Integer> buildFcn() {
+        return (c1, c2) -> simpleComps.stream().sum(comp -> comp(c1, c2));
+    }
+
+                                          /**
+t t : 0
+t f : 1
+f f : 0
+f t : -1
+                                          **/
+}
+

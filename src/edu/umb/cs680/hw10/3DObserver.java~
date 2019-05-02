@@ -1,0 +1,6 @@
+import java.util.Observable;
+import java.util.Observer;
+
+class 3DObserver implements Observer {
+    
+}

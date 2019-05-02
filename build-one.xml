@@ -1,0 +1,63 @@
+<project name="mw-hw" default="hw" basedir=".">
+
+  <target name="clean">
+    <delete dir="bin"/>
+    <delete dir="test/bin"/>
+  </target>
+
+  <property environment="env"/>
+  <!-- suzuki, to read environment variables -->
+
+  <path id="classpath">
+    <pathelement path="bin"/>
+    <pathelement path="test/bin"/>
+    <pathelement path="${env.JUNIT}"/>
+    <!-- do above if each jar is in JUNIT env var
+         could instead use fileset and put jar directory in the JUNIT env var  -->
+  </path>
+
+  <target name="compile">
+    <mkdir dir="bin"/>
+    <mkdir dir="test/bin"/>
+    <javac srcdir="src" destdir="bin"
+           includeantruntime="false"/>
+    <javac srcdir="test/src" destdir="test/bin"
+           classpathref="classpath"
+           includeantruntime="false"/>
+  </target>
+
+    <!-- https://junit.org/junit5/docs/snapshot/user-guide/#running-tests-build-ant -->
+    <target name="test">
+      <mkdir dir="test/bin/report"/>
+      <junitlauncher haltOnFailure="true" printSummary="true">
+        <classpath refid="classpath"/>
+        <testclasses outputdir="test/bin/report">
+          <fileset dir="test/bin">
+            <!-- given by destdir in compile -->
+            <include name="**/*Test.class"/>
+            <!-- double asterisk is recursive version of * wildcard -->
+          </fileset>
+          <listener type="legacy-plain" sendSysOut="true" />
+        </testclasses>
+      </junitlauncher>
+    </target>
+
+  <target name="jar">
+    <mkdir dir="bin/jar"/>
+    <jar destfile="bin/jar/mw-hw.jar" basedir="bin">
+      <manifest>
+        <attribute name="Main-Class" value="edu.umb.cs680.hw01.Calculator"/>
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="run">
+    <java jar="bin/jar/mw-hw.jar" fork="true"/>
+  </target>
+
+  <target name="hw"
+          depends="clean, compile, test, jar, run">
+  </target>
+
+</project>
+

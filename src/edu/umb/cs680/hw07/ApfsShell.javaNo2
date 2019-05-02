@@ -1,0 +1,90 @@
+package edu.umb.cs680.hw07;
+
+import java.util.LinkedList;
+
+
+public class ApfsShell {
+    private ApfsDirectory pwd;
+
+    public ApfsShell() {
+        pwd = APFS.getFileSystem().getDefaultRoot();
+    }
+
+    public ApfsDirectory getPwd() {
+        return pwd;
+    }
+
+
+    public void cd(String dirName) {
+        if (dirName == "..") {
+            if (pwd.getParent() != null) {
+                pwd = pwd.getParent();
+            }
+            else {
+                throw new RuntimeException(String.format("pwd %se has no parent directory",
+                                                         pwd.getName()));
+            }
+        } else {
+            ApfsDirectory childDir = this.getDirectory(dirName);
+            if (childDir != null) {
+                pwd = childDir;
+            }
+            else {
+                throw new RuntimeException(String.format("directory %s does not exist",
+                                                         dirName));
+            }
+        }
+    }
+
+    private ApfsFile getFile(String elemName) {
+        for (ApfsFSElement elem: pwd.getChildren()) {
+            if (elem.isFile() && elem.getName() == elemName) {
+                return (ApfsFile) elem;
+            }           
+        }
+        return null;
+    }
+
+    private ApfsDirectory getDirectory(String elemName) {
+        for (ApfsFSElement elem: pwd.getChildren()) {
+            if (elem.isDirectory() && elem.getName() == elemName) {
+                return (ApfsDirectory) elem;
+            }           
+        }
+        return null;
+    }
+
+
+    public void rm(String fileName) {
+        ApfsFile file = this.getFile(fileName);
+        if (file != null) {
+            APFS.getFileSystem().delete(file);
+        }
+        else {
+            throw new RuntimeException(String.format("file %s does not exist",
+                                                     fileName));
+        }
+    }
+
+    public void rmDir(String dirName) {
+        ApfsDirectory dir = this.getDirectory(dirName);
+        if (dir != null && dir.isEmpty()) {
+            APFS.getFileSystem().delete(dir);
+        }
+        else if (! dir.isEmpty()){
+            throw new RuntimeException(String.format("directory %s is not empty",
+                                                     dirName));
+        } else {
+            throw new RuntimeException(String.format("directory %s does not exist",
+                                                     dirName));
+        }
+    }
+
+
+    //todo    // public int getUsed() {
+        // return this.
+    // }
+    public static void main(String args[]) {
+    }
+
+}

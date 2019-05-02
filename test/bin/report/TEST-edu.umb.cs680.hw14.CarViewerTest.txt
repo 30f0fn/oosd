@@ -1,0 +1,7 @@
+Testcase: edu.umb.cs680.hw14.CarViewerTest
+Test: verifyPrice() took 1 milli sec(s)
+Test: verifyYear() took 0 milli sec(s)
+Test: verifyDomCountSort() took 1 milli sec(s)
+Test: verifyMileage() took 0 milli sec(s)
+Test: verifyParetoCompare() took 0 milli sec(s)
+Tests run: 5, Failures: 0, Skipped: 0, Aborted: 0, Time elapsed: 8 milli sec(s)

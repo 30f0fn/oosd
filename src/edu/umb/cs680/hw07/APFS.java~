@@ -1,0 +1,44 @@
+package edu.umb.cs680.hw07;
+
+import java.util.LinkedList;
+import java.time.LocalDateTime;
+
+public class APFS extends FileSystem {
+
+    private static APFS theInstance;
+    // private LinkedList<ApfsDirectory> rootDirs;
+
+    private static String defaultName = "theAPFS";
+    private static int defaultCapacity = 1000000000;
+
+    // protected FSElement createDefaultRoot(){
+        // return new ApfsDirectory(null, "root", LocalDateTime.now());
+    // }
+
+    public static APFS getFileSystem() {
+        if (theInstance == null) {
+            theInstance = new APFS();
+            theInstance.initFileSystem(defaultName, defaultCapacity);
+            // throw new RuntimeException("uh oh, no FileSystem instance exists");
+        }
+        return theInstance;
+    }
+
+    public ApfsDirectory getRootDir() {
+        return this.getDefaultRoot();
+    }
+
+
+    public void delete(ApfsFSElement elem) {
+        if (elem.getParent() != null) {
+            elem.getParent().deleteChild(elem);
+            elem.parent = null;
+        }
+    }
+
+    public void erase() {
+        this.rootDirs = new LinkedList<ApfsDirectory>();
+    }
+
+
+}

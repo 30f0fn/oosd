@@ -1,0 +1,189 @@
+<project>
+
+  <target name="clean">
+    <delete dir="bin"/>
+  </target>
+
+  <target name="compile">
+    <mkdir dir="bin/classes"/>
+    <javac srcdir="src" destdir="bin/classes"/>
+  </target>
+
+  <target name="jar">
+    <mkdir dir="bin/jar"/>
+    <jar destfile="bin/jar/mw-hw.jar" basedir="bin/classes">
+      <manifest>
+        <attribute name="Main-Class" value="edu.umb.cs680.hw01.Calculator"/>
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="run">
+    <java jar="bin/jar/mw-hw.jar" fork="true"/>
+  </target>
+
+</project>
+
+
+<!-- <project name="mw-hw" basedir="." default="main"> -->
+
+<!--   <property name="src.dir" value="src"/> -->
+<!--   <property name="build.dir" value="build"/> -->
+<!--   <property name="classes.dir" value="${build.dir}/classes"/> -->
+<!--   <property name="jar.dir" value="${build.dir}/jar"/> -->
+
+<!--   <property name="main-class" value="oata.HelloWorld"/> -->
+
+<!--   <property name="lib.dir" value="lib"/> -->
+
+<!--   <path id="classpath"> -->
+<!--     <fileset dir="${lib.dir}" includes="**/*.jar"/> -->
+<!--   </path> -->
+  
+<!--   <path id="application" location="${jar.dir}/${ant.project.name}.jar"/> -->
+
+
+<!--   <target name="clean"> -->
+<!--     <delete dir="${build.dir}"/> -->
+<!--   </target> -->
+
+<!--   <target name="compile"> -->
+<!--     <mkdir dir="${classes.dir}"/> -->
+<!--     <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath"/> -->
+<!--     <copy todir="${classes.dir}"> -->
+<!--       <fileset dir="${src.dir}" excludes="**/*.java"/> -->
+<!--     </copy> -->
+<!--   </target> -->
+
+<!--   <target name="jar" depends="compile"> -->
+<!--     <mkdir dir="${jar.dir}"/> -->
+<!--     <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}"> -->
+<!--       <manifest> -->
+<!--         <attribute name="Main-Class" value="${main-class}"/> -->
+<!--       </manifest> -->
+<!--     </jar> -->
+<!--   </target> -->
+
+
+<!--     <target name="run" depends="jar"> -->
+<!--         <java fork="true" classname="${main-class}"> -->
+<!--             <classpath> -->
+<!--                 <path refid="classpath"/> -->
+<!--                 <path refid="application"/> -->
+<!--             </classpath> -->
+<!--         </java> -->
+<!--     </target> -->
+
+<!--     <target name="junit" depends="jar"> -->
+<!--         <junit printsummary="yes"> -->
+<!--             <classpath> -->
+<!--                 <path refid="classpath"/> -->
+<!--                 <path refid="application"/> -->
+<!--             </classpath> -->
+
+<!--             <batchtest fork="yes"> -->
+<!--                 <fileset dir="${src.dir}" includes="**/*Test.java"/> -->
+<!--             </batchtest> -->
+<!--         </junit> -->
+<!--     </target> -->
+
+
+
+
+<!--   <target name="clean-build" depends="clean,jar"/> -->
+  
+<!--   <target name="main" depends="clean,run"/> -->
+
+<!-- </project> -->
+
+
+
+
+
+
+
+
+
+
+<!-- <!-\- before junit -\-> -->
+
+
+
+<!-- <!-\- <project name="HelloWorld" basedir="." default="main"> -\-> -->
+<!-- <!-\-   <property name="src.dir" value="src"/> -\-> -->
+  
+<!-- <!-\-   <property name="build.dir" value="build"/> -\-> -->
+<!-- <!-\-   <property name="classes.dir" value="${build.dir}/classes"/> -\-> -->
+<!-- <!-\-   <property name="jar.dir" value="${build.dir}/jar"/> -\-> -->
+
+<!-- <!-\-   <property name="main-class" value="oata.HelloWorld"/> -\-> -->
+
+<!-- <!-\-   <property name="lib.dir" value="lib"/> -\-> -->
+
+<!-- <!-\-   <path id="classpath"> -\-> -->
+<!-- <!-\-     <fileset dir="${lib.dir}" includes="**/*.jar"/> -\-> -->
+<!-- <!-\-   </path> -\-> -->
+  
+<!-- <!-\-   <!-\\- <path id="application" location="${jar.dir}/${ant.project.name}.jar"/> -\\-> -\-> -->
+
+
+<!-- <!-\-   <target name="clean"> -\-> -->
+<!-- <!-\-     <delete dir="${build.dir}"/> -\-> -->
+<!-- <!-\-   </target> -\-> -->
+
+<!-- <!-\-   <target name="compile"> -\-> -->
+<!-- <!-\-     <mkdir dir="${classes.dir}"/> -\-> -->
+<!-- <!-\-     <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath"/> -\-> -->
+<!-- <!-\-     <copy todir="${classes.dir}"> -\-> -->
+<!-- <!-\-       <fileset dir="${src.dir}" excludes="**/*.java"/> -\-> -->
+<!-- <!-\-     </copy> -\-> -->
+<!-- <!-\-   </target> -\-> -->
+
+<!-- <!-\-   <target name="jar" depends="compile"> -\-> -->
+<!-- <!-\-     <mkdir dir="${jar.dir}"/> -\-> -->
+<!-- <!-\-     <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}"> -\-> -->
+<!-- <!-\-       <manifest> -\-> -->
+<!-- <!-\-         <attribute name="Main-Class" value="${main-class}"/> -\-> -->
+<!-- <!-\-       </manifest> -\-> -->
+<!-- <!-\-     </jar> -\-> -->
+<!-- <!-\-   </target> -\-> -->
+
+
+<!-- <!-\-   <target name="run" depends="jar"> -\-> -->
+<!-- <!-\-     <java fork="true" classname="${main-class}"> -\-> -->
+<!-- <!-\-       <classpath> -\-> -->
+<!-- <!-\-         <path refid="classpath"/> -\-> -->
+<!-- <!-\-         <path location="${jar.dir}/${ant.project.name}.jar"/> -\-> -->
+<!-- <!-\-       </classpath> -\-> -->
+<!-- <!-\-     </java> -\-> -->
+<!-- <!-\-   </target> -\-> -->
+
+
+
+<!-- <!-\-   <target name="clean-build" depends="clean,jar"/> -\-> -->
+  
+<!-- <!-\-   <target name="main" depends="clean,run"/> -\-> -->
+
+<!-- <!-\- </project> -\-> -->
+
+
+
+<!-- <!-\- <!-\\- <project name="HelloWorld"> -\\-> -\-> -->
+<!-- <!-\- <!-\\-   <target name="clean"> -\\-> -\-> -->
+<!-- <!-\- <!-\\-     <delete dir="build"/> -\\-> -\-> -->
+<!-- <!-\- <!-\\-   </target> -\\-> -\-> -->
+
+<!-- <!-\- <!-\\-   <target name="compile"> -\\-> -\-> -->
+<!-- <!-\- <!-\\-     <mkdir dir="build/classes"/> -\\-> -\-> -->
+<!-- <!-\- <!-\\-     <javac srcdir="src" destdir="build/classes"/> -\\-> -\-> -->
+<!-- <!-\- <!-\\-   </target> -\\-> -\-> -->
+
+<!-- <!-\- <!-\\-   <target name="jar"> -\\-> -\-> -->
+<!-- <!-\- <!-\\-     <mkdir dir="build/jar"/> -\\-> -\-> -->
+<!-- <!-\- <!-\\-     <jar destfile="build/jar/HelloWorld.jar" basedir="build/classes"> -\\-> -\-> -->
+<!-- <!-\- <!-\\-       <manifest> -\\-> -\-> -->
+<!-- <!-\- <!-\\-         <attribute name="Main-Class" value="oata.HelloWorld"/> -\\-> -\-> -->
+<!-- <!-\- <!-\\-       </manifest> -\\-> -\-> -->
+<!-- <!-\- <!-\\-     </jar> -\\-> -\-> -->
+<!-- <!-\- <!-\\-   </target> -\\-> -\-> -->
+<!-- <!-\- <!-\\- </project> -\\-> -\-> -->

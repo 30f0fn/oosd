@@ -1,0 +1,31 @@
+package edu.umb.cs680.hw14;
+
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.stream.Stream;
+import java.util.function.BinaryOperator;
+
+class CarParetoCompBuilder {
+
+    LinkedList<Comparator<Car>> simpleCompFcns;
+
+    protected CarParetoCompBuilder() {
+        simpleCompFcns = new LinkedList<Comparator<Car>>();
+    }
+
+    protected void addCompFcn(Comparator<Car> compFcn) {
+        simpleCompFcns.add(compFcn);
+    }
+
+
+    // this is wrong b/c e.g. given 1, -1, 1 it returns 1
+    protected Comparator<Car> buildFcn() {
+        BinaryOperator<Integer> 
+            f = (x, y) -> (x + y) / Math.min(1, Math.abs(x + y));
+        return (c1, c2) ->
+            simpleCompFcns.stream()
+            .map(comp -> comp.compare(c1, c2))
+            .reduce(0, f);
+    }
+
+}

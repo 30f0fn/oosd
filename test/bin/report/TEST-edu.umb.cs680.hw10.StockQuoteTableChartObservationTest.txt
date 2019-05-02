@@ -1,0 +1,2 @@
+Testcase: edu.umb.cs680.hw10.StockQuoteTableChartObservationTest
+Tests run: 0, Failures: 1, Skipped: 0, Aborted: 0, Time elapsed: 0 milli sec(s)

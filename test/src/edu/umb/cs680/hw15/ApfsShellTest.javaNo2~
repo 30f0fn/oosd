@@ -1,0 +1,144 @@
+package edu.umb.cs680.hw12;
+
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterAll;
+
+import java.time.LocalDateTime;
+
+class ApfsShellTest {
+    private static APFS fs;
+    private static LocalDateTime datetime;
+    private static ApfsDirectory root;
+    private static ApfsDirectory system;
+    private static ApfsFile a;
+    private static ApfsFile b;
+    private static ApfsFile c;
+    private static ApfsDirectory home;
+    private static ApfsFile d;
+    private static ApfsLink x;
+    private static ApfsDirectory pictures;
+    private static ApfsFile e;
+    private static ApfsFile f;
+    private static ApfsLink y;
+    private static ApfsShell shell;
+
+    @BeforeAll
+    public static void setUp() {
+        fs = APFS.getFileSystem();
+        fs.erase();
+        datetime = LocalDateTime.of(2042, 12, 31, 12, 0);
+        root = new ApfsDirectory(null, "root", datetime);
+        fs.addRoot(root);
+        system = new ApfsDirectory(root, "system", datetime);
+        a = new ApfsFile(system, "a", 1, datetime);
+        b = new ApfsFile(system, "b", 2, datetime);
+        c = new ApfsFile(system, "c", 3, datetime);
+        home = new ApfsDirectory(root, "home", datetime);
+        d = new ApfsFile(home, "d", 4, datetime);
+        x = new ApfsLink(home, "x", datetime, system);
+        pictures = new ApfsDirectory(home, "pictures", datetime);
+        e = new ApfsFile(pictures, "e", 5, datetime);
+        f = new ApfsFile(pictures, "f", 6, datetime);
+        y = new ApfsLink(pictures, "y", datetime, e);
+    }
+
+
+    @Test
+    public void verifyInitialPwd() {
+        shell = new ApfsShell();
+        FSElement expected = root;
+        FSElement actual = shell.getPwd();
+        assertEquals(expected, actual);
+    }
+
+
+    @Test
+    public void verifyCdDown() {
+        shell = new ApfsShell();
+        shell.cd("home");
+        FSElement expected = home;
+        FSElement actual = shell.getPwd();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void verifyCdDownUp() {
+        shell = new ApfsShell();
+        shell.cd("home");
+        FSElement expected = home;
+        FSElement actual = shell.getPwd();
+        assertEquals(expected, actual);
+        shell.cd("..");
+        expected = root;
+        actual = shell.getPwd();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void verifyCdToNonexistentThrows() {
+        assertThrows(RuntimeException.class, () -> {
+                shell.cd("asd");
+            });
+    }
+
+    @Test
+    public void verifyRm() {
+        shell = new ApfsShell();
+        shell.cd("system");
+        shell.rm("a");
+        int expected = 2;
+        int actual = system.countChildren();
+        assertEquals(expected, actual);
+        setUp();
+    }
+
+    @Test
+    public void verifyRmOfDirThrows() {
+        shell = new ApfsShell();
+        assertThrows(RuntimeException.class, () -> {
+                shell.rm("system");
+            });
+        setUp();
+    }
+
+    @Test
+    public void verifyRmDirNonemptyThrows() {
+        shell = new ApfsShell();
+        int actual = system.countChildren();
+        int expected = 3;
+        assertEquals(expected, actual);
+        assertThrows(RuntimeException.class, () -> {
+                shell.rmDir("system");
+            });
+        setUp();
+    }
+
+
+    @Test
+    public void verifyRmDir() {
+        shell = new ApfsShell();
+        assertEquals(false, system.isEmpty());
+        shell.cd("system");
+        shell.rm("a");
+        shell.rm("b");        
+        shell.rm("c");        
+        assertEquals(true, system.isEmpty());
+        shell.cd("..");
+        shell.rmDir("system");
+        int actual = root.countChildren();
+        int expected = 1;
+        assertEquals(expected, actual);
+        setUp();
+    }
+
+
+
+    @AfterAll
+    public static void doSomething() {
+        fs.erase();
+    }
+
+}
+

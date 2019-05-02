@@ -1,0 +1,27 @@
+package edu.umb.cs680.hw08;
+
+public class ApfsCountingVisitor implements ApfsFSVisitor  {
+
+    private ArrayList<ApfsFile> foundFiles = new ArrayList<ApfsFile>;
+
+    private ApfsFileFeature soughtFeature;
+
+    public void visit(ApfsLink link) { }
+
+    public void visit(ApfsDirectory dir) { }
+
+    public void visit(ApfsFile file) {
+        if (soughtFeature.matchedBy(file)) {
+            foundFiles.add(file);
+        }
+    }
+
+    public LinkedList<ApfsFile> search(ApfsFileFeature feature) {
+        soughtFeature = feature;
+        for (ApfsDirectory rootDir : APFS.getFileSystem().getRootDirs()) {
+            rootDir.accept(this);
+        }
+        return foundFiles;
+    }
+    
+}

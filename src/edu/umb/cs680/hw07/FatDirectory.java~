@@ -1,0 +1,12 @@
+package edu.umb.cs680.hw07;
+
+import java.util.LinkedList;
+import java.time.LocalDateTime;
+
+public class FATDirectory {
+
+    // public FATDirectory FatDirectory(Directory dir, String str, LocalDateTime ldt) {
+        // super(dir, str, ldt);
+    // }
+
+}

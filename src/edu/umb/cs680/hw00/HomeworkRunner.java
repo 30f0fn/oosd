@@ -17,7 +17,10 @@ class HomeworkRunner {
         edu.umb.cs680.hw07.FileSystem.main(args);
         edu.umb.cs680.hw08.FileSystem.main(args);
         edu.umb.cs680.hw09.CarViewer.main(args);
+        edu.umb.cs680.hw10.StockQuoteObservable.main(args);
+        edu.umb.cs680.hw11.Glass.main(args);
         edu.umb.cs680.hw12.APFS.main(args);
+        edu.umb.cs680.hw13.DVDPlayer.main(args);
         edu.umb.cs680.hw14.CarViewer.main(args);
         edu.umb.cs680.hw15.APFS.main(args);
     }

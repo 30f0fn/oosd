@@ -1,8 +1,8 @@
-package edu.umb.cs680.hw10;
+package edu.umb.cs680.hw11;
 
 import java.util.ArrayList;
 
-public class MyObservable {
+public class ObservableEnhanced {
 
     private ArrayList<MyObserver> observers;
     private boolean hasChanged;
@@ -12,6 +12,7 @@ public class MyObservable {
     }
 
     public void addObserver(MyObserver o) {
+        System.out.println(o);
         observers.add(o);
     }
 

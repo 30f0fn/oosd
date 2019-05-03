@@ -1,7 +1,0 @@
-Testcase: edu.umb.cs680.hw07.ApfsFSElementTest
-Test: verifyElemTypeHome() took 1 milli sec(s)
-Test: verifyGetLastModified() took 1 milli sec(s)
-Test: verifyElemTypeA() took 0 milli sec(s)
-Test: verifyElemTypeY() took 0 milli sec(s)
-Test: verifyGetParentHome() took 1 milli sec(s)
-Tests run: 5, Failures: 0, Skipped: 0, Aborted: 0, Time elapsed: 5 milli sec(s)

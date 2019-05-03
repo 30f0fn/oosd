@@ -108,8 +108,12 @@ class CarViewerTest {
     }
 
     @Test void verifyParetoCompare() {
+        // System.out.println("ripoff, ripoffhelper\n");
+        // System.out.println(viewer.paretoCompare(ripoff, ripoffHelper));
         assertTrue(viewer.paretoCompare(ripoff, ripoffHelper) < 0);
+        // System.out.println("ripoff, antique\n");
         assertTrue(viewer.paretoCompare(ripoff, antique) < 0);
+        // System.out.println("ripoff, okdeal\n");
         assertTrue(viewer.paretoCompare(ripoff, okDeal) == 0);
         assertTrue(viewer.paretoCompare(okDeal, ripoff) == 0);
         assertTrue(viewer.paretoCompare(okDeal, antique) < 0);

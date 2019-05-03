@@ -21,7 +21,7 @@ public class CarViewer {
         paretoCompBuilder.addCompFcn(Comparator.comparingDouble(car -> car.getPrice()));        
         paretoCompBuilder.addCompFcn(Comparator.comparing(car -> car.getMileage()));
         paretoCompBuilder.addCompFcn(Comparator.comparing(car -> -car.getYear()));
-        paretoCompFcn = paretoCompBuilder.buildFcn();
+        paretoCompFcn = paretoCompBuilder::compare;
     }
 
     public CarViewer() {

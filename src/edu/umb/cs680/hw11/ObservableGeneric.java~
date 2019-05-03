@@ -12,6 +12,7 @@ public class MyObservable {
     }
 
     public void addObserver(MyObserver o) {
+        System.out.println(o);
         observers.add(o);
     }
 

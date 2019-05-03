@@ -1,8 +1,10 @@
 package edu.umb.cs680.hw10;
 
-class DJIAQuoteObservable extends MyObservable {
+public class DJIAQuoteObservable extends MyObservable {
 
     private float quote;
+
+
 
     public float getQuote() {
         return quote;

@@ -1,4 +1,0 @@
-Testcase: edu.umb.cs680.hw12.ApfsLinkTest
-Test: verifyFileEqualityY() took 0 milli sec(s)
-Test: verifyLinkEqualityX() took 0 milli sec(s)
-Tests run: 2, Failures: 0, Skipped: 0, Aborted: 0, Time elapsed: 2 milli sec(s)

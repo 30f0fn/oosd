@@ -6,14 +6,14 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 
 
 class DJIAQuoteObservableTest {
 
     private static DJIAQuoteObservable observable;
 
-    @BeforeEach
+    @BeforeAll
     public static void setUp() {
         observable = new DJIAQuoteObservable();
     }
@@ -28,7 +28,7 @@ class DJIAQuoteObservableTest {
     public void verifyAddObserver(){
         ThreeDeeObserver obsvr = new ThreeDeeObserver();
         observable.addObserver(obsvr);
-        assertEquals(obsvr, observable.getObservers());
+        assertEquals(obsvr, observable.getObservers().get(0));
     }
 
 }

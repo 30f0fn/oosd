@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 
 
 class ThreeDeeObserverTest {
@@ -15,7 +15,7 @@ class ThreeDeeObserverTest {
     private static StockQuoteObservable stockQO;
     private static ThreeDeeObserver observer;
 
-    @BeforeEach
+    @BeforeAll
     public static void setUp() {
         djiaQO = new DJIAQuoteObservable();
         stockQO = new StockQuoteObservable();

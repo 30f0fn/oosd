@@ -3,10 +3,6 @@ package edu.umb.cs680.hw14;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.stream.Stream;
-import java.util.function.BinaryOperator;
-import java.util.function.Function;
-import java.util.function.BiFunction;
-import java.util.function.BiPredicate;
 
 class CarParetoCompBuilder {
 

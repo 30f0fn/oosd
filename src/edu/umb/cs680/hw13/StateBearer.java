@@ -20,6 +20,10 @@ class StateBearer {
         return state;
     }
 
+    protected void lightDisplay() {
+        System.out.println(state.getDisplay());
+    }
+
     protected void changeState(State newState) {
         state = newState;
     }

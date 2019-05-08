@@ -2,13 +2,12 @@ package edu.umb.cs680.hw13;
 
 class DrawerOpen implements State {
 
-    protected static DrawerOpen instance;
-    protected static String display;
+    // todo should protected be private?
+    protected static DrawerOpen instance = new DrawerOpen();
 
-    static {
-        display = "Drawer is open.";
-        instance = new DrawerOpen();
-    }
+    // static {
+    //     instance = new DrawerOpen();
+    // }
 
     private DrawerOpen() {}
 
@@ -28,5 +27,9 @@ class DrawerOpen implements State {
     }
 
     public void stopButtonPushed() { }
+
+    public String getDisplay() {
+        return "Drawer is open.";
+    }
 
 }

@@ -1,6 +1,6 @@
 package edu.umb.cs680.hw13;
 
-// I found singleton implementation here to be ugly, so used stateBearer to hold the one non-static field
+// stateBearer holds the one non-static field
 
 public interface DVDPlayer {
     
@@ -38,15 +38,15 @@ public interface DVDPlayer {
     public static void stop() {
     }
 
-    // public void lightDisplay() {
-        // System.out.println(state.getDisplay());
-    // }
+    public static void lightDisplay() {
+        stateBearer.lightDisplay();
+    }
 
     public static void main(String[] args) {
-        // player.lightDisplay();
+        lightDisplay();
         play();
         changeState(DrawerClosedPlaying.getInstance());
-        // player.lightDisplay();
+        lightDisplay();
         play();
     }
 }

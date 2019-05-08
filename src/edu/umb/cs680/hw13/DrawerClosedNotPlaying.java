@@ -2,12 +2,7 @@ package edu.umb.cs680.hw13;
 
 class DrawerClosedNotPlaying implements State {
 
-    protected static DrawerClosedNotPlaying instance;
-    protected static String display;
-
-    static {
-        display = "Drawer is closed; the player is stopped.";
-    }
+    protected static DrawerClosedNotPlaying instance = new DrawerClosedNotPlaying();
 
     private DrawerClosedNotPlaying() {}
 
@@ -32,8 +27,8 @@ class DrawerClosedNotPlaying implements State {
 
     public void stopButtonPushed() {}
 
-    // protected static String getDisplay() {
-        // return display;
-    // }
+    public String getDisplay() {
+        return "Drawer is closed; the player is stopped.";
+    }
 
 }

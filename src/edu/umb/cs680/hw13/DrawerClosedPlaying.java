@@ -3,12 +3,10 @@ package edu.umb.cs680.hw13;
 class DrawerClosedPlaying implements State {
 
     protected static DrawerClosedPlaying instance;
-    protected static String display;
 
     private DrawerClosedPlaying() {}
 
     static {
-        display = "The player is playing.";
         instance = new DrawerClosedPlaying();
     }
 
@@ -25,5 +23,10 @@ class DrawerClosedPlaying implements State {
         DVDPlayer.stop();
         DVDPlayer.changeState(DrawerClosedNotPlaying.getInstance());
     }
+
+    public String getDisplay() {
+        return "The player is playing.";
+    }
+
 
 }

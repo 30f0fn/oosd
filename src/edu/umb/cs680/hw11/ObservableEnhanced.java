@@ -33,9 +33,11 @@ public class ObservableEnhanced<T> {
     }
 
     public void notifyObservers(T event) {
-        for (ObserverEnhanced<T> observer : observers) {
-            observer.update(event);
+        if (hasChanged) {
+            for (ObserverEnhanced<T> observer : observers) {
+                observer.update(event);
+            }
+            clearChanged();
         }
-        clearChanged();
     }
 }

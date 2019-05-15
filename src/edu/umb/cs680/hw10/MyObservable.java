@@ -32,10 +32,11 @@ public class MyObservable {
     }
 
     public void notifyObservers(Object obj) {
-        for (MyObserver observer : observers) {
-            observer.update(obj);
+        if (hasChanged) {
+            for (MyObserver observer : observers) {
+                observer.update(obj);
+            }
+            clearChanged();
         }
-        clearChanged();
-
     }
 }

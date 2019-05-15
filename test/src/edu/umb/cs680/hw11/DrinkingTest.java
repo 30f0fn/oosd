@@ -27,9 +27,11 @@ class DrinkingTest {
     public void verifyGlass() {
         assertEquals(0f, glass.measureBeer());
         Pour pour = new Pour(80f);
+        bartender.setChanged();
         bartender.notifyObservers(pour);
         assertEquals(80f, glass.measureBeer());
         Sip sip = new Sip(10f);
+        drinker.setChanged();
         drinker.notifyObservers(sip);
         assertEquals(70f, glass.measureBeer());
         glass.dump();
@@ -41,6 +43,7 @@ class DrinkingTest {
         RuntimeException thrown = assertThrows(RuntimeException.class,
                      ()->{
                          Pour pour = new Pour(120f);
+                         bartender.setChanged();
                          bartender.notifyObservers(pour);                 
                      });
         assertTrue(thrown.getMessage().contains("spilled"));
@@ -53,6 +56,7 @@ class DrinkingTest {
                          Sip sip;
                          for (int i = 0; i < 11; i++) {
                              sip = new Sip(10);
+                             drinker.setChanged();
                              drinker.notifyObservers(sip);
                          }});
         assertTrue(thrown.getMessage().contains("negative"));

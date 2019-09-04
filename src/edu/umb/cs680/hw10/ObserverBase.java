@@ -1,18 +1,18 @@
 package edu.umb.cs680.hw10;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 abstract class ObserverBase {
     
-    private ArrayList<StockEvent> receivedStockEvents;
-    private ArrayList<DJIAEvent> receivedDJIAEvents;
+    private LinkedList<StockEvent> receivedStockEvents;
+    private LinkedList<DJIAEvent> receivedDJIAEvents;
 
     protected ObserverBase() {
-        receivedStockEvents = new ArrayList<StockEvent>();
-        receivedDJIAEvents = new ArrayList<DJIAEvent>();    
+        receivedStockEvents = new LinkedList<StockEvent>();
+        receivedDJIAEvents = new LinkedList<DJIAEvent>();    
 }
 
-    public ArrayList<StockEvent> getReceivedStockEvents() {
+    public LinkedList<StockEvent> getReceivedStockEvents() {
         return receivedStockEvents;
     }
 
@@ -20,7 +20,7 @@ abstract class ObserverBase {
         return receivedStockEvents.get(receivedStockEvents.size() - 1);
     }
     
-    public ArrayList<DJIAEvent> getReceivedDJIAEvents() {
+    public LinkedList<DJIAEvent> getReceivedDJIAEvents() {
         return receivedDJIAEvents;
     }
 

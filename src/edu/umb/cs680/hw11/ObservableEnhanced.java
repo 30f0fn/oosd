@@ -1,22 +1,21 @@
 package edu.umb.cs680.hw11;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class ObservableEnhanced<T> {
 
-    private ArrayList<ObserverEnhanced<T>> observers;
+    private LinkedList<ObserverEnhanced<T>> observers;
     private boolean hasChanged;
 
     public ObservableEnhanced() {
-        observers = new ArrayList<ObserverEnhanced<T>>();
+        observers = new LinkedList<ObserverEnhanced<T>>();
     }
 
     public void addObserver(ObserverEnhanced<T> o) {
-        // System.out.println(o);
         observers.add(o);
     }
 
-    protected ArrayList<ObserverEnhanced<T>> getObservers() {
+    protected LinkedList<ObserverEnhanced<T>> getObservers() {
         return observers;
     }
 

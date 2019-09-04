@@ -1,21 +1,21 @@
 package edu.umb.cs680.hw10;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class MyObservable {
 
-    private ArrayList<MyObserver> observers;
+    private LinkedList<MyObserver> observers;
     private boolean hasChanged;
 
     public MyObservable() {
-        observers = new ArrayList<MyObserver>();
+        observers = new LinkedList<MyObserver>();
     }
 
     public void addObserver(MyObserver o) {
         observers.add(o);
     }
 
-    protected ArrayList<MyObserver> getObservers() {
+    protected LinkedList<MyObserver> getObservers() {
         return observers;
     }
 

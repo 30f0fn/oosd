@@ -1,6 +1,6 @@
 package edu.umb.cs680.hw10;
 
-class DJIAEvent {
+public class DJIAEvent {
 
     private float quote;
 

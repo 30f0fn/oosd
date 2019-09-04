@@ -1,6 +1,6 @@
 package edu.umb.cs680.hw10;
 
-class StockEvent {
+public class StockEvent {
 
     private String ticker;
     private Float quote;

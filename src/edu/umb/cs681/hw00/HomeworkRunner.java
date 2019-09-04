@@ -9,6 +9,7 @@ class HomeworkRunner {
     
     public static void main(String[] args) {
         System.out.printf("Running homework exercises for cs681...\n");
+        edu.umb.cs681.hw01.Main.main(args);
         // Calculator.main(args);
         // Student.main(args);
         // Singleton.main(args);

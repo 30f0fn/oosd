@@ -10,7 +10,7 @@ abstract class ObserverBase {
     protected ObserverBase() {
         receivedStockEvents = new LinkedList<StockEvent>();
         receivedDJIAEvents = new LinkedList<DJIAEvent>();    
-}
+    }
 
     public LinkedList<StockEvent> getReceivedStockEvents() {
         return receivedStockEvents;

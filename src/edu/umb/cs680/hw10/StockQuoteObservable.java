@@ -32,6 +32,4 @@ public class StockQuoteObservable extends MyObservable {
                           e.getQuote());
     }
 
-
-
 }

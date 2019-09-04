@@ -1,77 +1,10 @@
 <project name="mw-hw" default="hw" basedir=".">
 
-  <!-- to run all how, just do "ant" without argument -->
-  <!-- to run just hw number X, do "ant single -Dhw.id=<X>" -->
-  <!-- to configure this file for new hw X, specify its main class with a property as below -->
-  <!-- to create directories for HW X, do "ant setup-hw -Dhw.id=<X>" -->
+  <property name="courseID" value="681"/>
+  <property name="coursePath" value="edu/umb/cs${courseID}"/>
 
-  <condition property="hw.main.class" value="edu.umb.cs680.hw01.Calculator">
-    <equals arg1="${hw.id}" arg2="01" />
-  </condition>
+  <include file="${courseID}.xml"/>
 
-  <condition property="hw.main.class" value="edu.umb.cs680.hw02.Student">
-    <equals arg1="${hw.id}" arg2="02" />
-  </condition>
-
-  <condition property="hw.main.class" value="edu.umb.cs680.hw03.Singleton">
-    <equals arg1="${hw.id}" arg2="03" />
-  </condition>
-
-  <condition property="hw.main.class" value="edu.umb.cs680.hw04.Car">
-    <equals arg1="${hw.id}" arg2="04" />
-  </condition>
-
-  <condition property="hw.main.class" value="edu.umb.cs680.hw05.FileSystem">
-    <equals arg1="${hw.id}" arg2="05" />
-  </condition>
-
-  <condition property="hw.main.class" value="edu.umb.cs680.hw06.FileSystem">
-    <equals arg1="${hw.id}" arg2="06" />
-  </condition>
-
-  <condition property="hw.main.class" value="edu.umb.cs680.hw07.FileSystem">
-    <equals arg1="${hw.id}" arg2="07" />
-  </condition>
-
-  <condition property="hw.main.class" value="edu.umb.cs680.hw08.APFS">
-    <equals arg1="${hw.id}" arg2="08" />
-  </condition>
-
-  <condition property="hw.main.class" value="edu.umb.cs680.hw09.CarViewer">
-    <equals arg1="${hw.id}" arg2="09" />
-  </condition>
-
-  <condition property="hw.main.class" value="edu.umb.cs680.hw09.StockQuoteObservable">
-    <equals arg1="${hw.id}" arg2="10" />
-  </condition>
-
-  <condition property="hw.main.class" value="edu.umb.cs680.hw09.Glass">
-    <equals arg1="${hw.id}" arg2="11" />
-  </condition>
-
-  <condition property="hw.main.class" value="edu.umb.cs680.hw12.APFS">
-    <equals arg1="${hw.id}" arg2="12" />
-  </condition>
-
-  <condition property="hw.main.class" value="edu.umb.cs680.hw12.APFS">
-    <equals arg1="${hw.id}" arg2="13" />
-  </condition>
-
-  <condition property="hw.main.class" value="edu.umb.cs680.hw12.APFS">
-    <equals arg1="${hw.id}" arg2="14" />
-  </condition>
-
-  <condition property="hw.main.class" value="edu.umb.cs680.hw15.APFS">
-    <equals arg1="${hw.id}" arg2="15" />
-  </condition>
-
-
-
-
-
-  <target name="set.hw.path">
-    <property name="hw.path" value="edu/umb/cs680/hw${hw.id}"/>
-  </target>
 
   <target name="clean">
     <delete dir="bin"/>
@@ -90,23 +23,24 @@
   </path>
 
 
-<!-- todo! include junit jar files as fileset -->
+  <target name="set.hwPath">
+    <property name="hwPath" value="${coursePath}/hw${hwID}"/>
+  </target>
 
   <target name="compile">
     <mkdir dir="bin"/>
     <mkdir dir="test/bin"/>
-    <javac srcdir="src" destdir="bin"
+    <javac srcdir="src/${coursePath}" destdir="bin"
            includeantruntime="false"/>
-    <javac srcdir="test/src" destdir="test/bin"
+    <javac srcdir="test/src/${coursePath}" destdir="test/bin"
            classpathref="classpath"
            includeantruntime="false"/>
   </target>
 
-
   <target name="compile.single.hw"
-    depends="set.hw.path">
-    <property name="src.dir" value="src/${hw.path}"/>
-    <property name="test.src.dir" value="test/src/${hw.path}"/>
+          depends="set.hwPath">
+    <property name="src.dir" value="src/${hwPath}"/>
+    <property name="test.src.dir" value="test/src/${hwPath}"/>
     <property name="bin.dir" value="bin"/>
     <property name="test.bin.dir" value="test/bin"/>
     <!-- <property name="bin.dir" value="bin/${hw.path}"/> -->
@@ -152,7 +86,7 @@
     <mkdir dir="bin/jar"/>
     <jar destfile="bin/jar/mw-hw.jar" basedir="bin">
       <manifest>
-        <attribute name="Main-Class" value="edu.umb.cs680.hw00.HomeworkRunner"/>
+        <attribute name="Main-Class" value="edu.umb.cs${courseID}.hw00.HomeworkRunner"/>
       </manifest>
     </jar>
   </target>
@@ -171,9 +105,9 @@
   </target>
 
   <target name="setup-hw"
-          depends="set.hw.path">
-    <mkdir dir="src/${hw.path}"/>
-    <mkdir dir="test/src/${hw.path}"/>
+          depends="set.hwPath">
+    <mkdir dir="src/${hwPath}"/>
+    <mkdir dir="test/src/${hwPath}"/>
   </target>
 
 </project>

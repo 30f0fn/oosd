@@ -1,0 +1,9 @@
+<project name="681" default="hw" basedir=".">
+
+  <property name="courseID" value="681"/>
+
+  <!-- <condition property="hw.main.class" value="edu.umb.cs${courseID}.hw01.XXX"> -->
+    <!-- <equals arg1="${hwID}" arg2="01"/> -->
+  <!-- </condition> -->
+
+</project>

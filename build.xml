@@ -44,8 +44,8 @@
 
   <target name="compile.single.hw"
           depends="set.hwPath">
-    <property name="src.dir" value="src/${hwPath}"/>
-    <property name="test.src.dir" value="test/src/${hwPath}"/>
+    <property name="src.dir" value="src"/>
+    <property name="test.src.dir" value="test/src"/>
     <property name="bin.dir" value="bin"/>
     <property name="test.bin.dir" value="test/bin"/>
     <!-- <property name="bin.dir" value="bin/${hw.path}"/> -->

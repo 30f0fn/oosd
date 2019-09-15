@@ -11,6 +11,7 @@ class HomeworkRunner {
         System.out.printf("Running homework exercises for cs681...\n");
         edu.umb.cs681.hw01.Main.main(args);
         edu.umb.cs681.hw02.Main.main(args);
+        edu.umb.cs681.hw03.Main.main(args);
         // Calculator.main(args);
         // Student.main(args);
         // Singleton.main(args);

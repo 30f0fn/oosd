@@ -15,19 +15,15 @@ public class Main {
 
 
     private static String carStreamToString(Stream<Car> carStream) {
-        return carStream.map((Car c) -> c.getMake() + " " + c.getModel())
-            .collect(Collectors.joining("; "));
+        String lineStarter = "\n\t\t";
+        return lineStarter + carStream.map((Car c) -> c.getMake() + " " + c.getModel())
+            .collect(Collectors.joining(";"+lineStarter));
     }
 
 
     public static void main(String[] args) {
 
         System.out.printf("HW03...\n");
-        // Car[] cars = {new Car("Toyota", "RAV4", 31000, 2016, 18998),
-                      // new Car("Subaru", "Forester", 90000, 2012, 13998),
-                      // new Car("Porsche", "Macan", 46000, 2015, 37998),
-                      // new Car("Volvo", "XC-60", 41000, 2014, 22998),
-                      // new Car("Mercedes-AMG", "GLC43", 21000, 2018, 51998)};
 
         CarViewerWithStream viewer = new CarViewerWithStream();
 

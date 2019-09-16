@@ -15,11 +15,6 @@ public class Main {
         return (T m, T n) -> m == null ? n : f.apply(m, n);
     }
 
-    // public static <T, U> Optional<U>
-    //     getBestVal(Stream<T> stream, BiFunction<T, T, U> getBetterVal) {
-    //     U val = stream.reduce(null, (nullFriendlyComp(getBetterVal)))
-    // }
-
     public static Optional<Float> getMinCarPrice(Stream<Car> carStream) {
         Float val = carStream.map((Car c) -> c.getPrice())
             .reduce(null, (nullFriendlyComp(Float::min)));

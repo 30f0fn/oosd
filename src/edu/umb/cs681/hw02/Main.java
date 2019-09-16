@@ -11,7 +11,8 @@ import edu.umb.cs680.hw14.Car;
 
 public class Main {
 
-    private static <T> BinaryOperator<T> nullFriendlyComp(BinaryOperator<T> f) {
+    private static <T> BinaryOperator<T>
+        nullFriendlyComp(BinaryOperator<T> f) {
         return (T m, T n) -> m == null ? n : f.apply(m, n);
     }
 

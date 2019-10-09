@@ -24,6 +24,6 @@ public class VariThreadedPrimeGenerator {
             } catch (InterruptedException e) {
             }
         }
-        Stream.of(genArray).forEach(gen -> gen.getPrimes().forEach(prime -> {}));
+        // Stream.of(genArray).forEach(gen -> gen.getPrimes().forEach(prime -> {}));
     }
 }

@@ -19,7 +19,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("HW04...");
 
-        // timeJavaPrimes();
+        timeJavaPrimes();
 
         try {
             runCargo();
@@ -32,7 +32,7 @@ public class Main {
 
     private static void runCargo() throws IOException, InterruptedException {
         Runtime rt = Runtime.getRuntime();
-        String cmdString = "cargoo run --manifest-path src/edu/umb/cs681/hw04/Cargo.toml";
+        String cmdString = "cargo run --manifest-path src/edu/umb/cs681/hw04/Cargo.toml";
             
         System.out.printf("\tRunning %s...\n", cmdString);
         Process pr = rt.exec(cmdString);

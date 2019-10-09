@@ -12,6 +12,7 @@ class HomeworkRunner {
         edu.umb.cs681.hw01.Main.main(args);
         edu.umb.cs681.hw02.Main.main(args);
         edu.umb.cs681.hw03.Main.main(args);
+        edu.umb.cs681.hw04.Main.main(args);
         // Calculator.main(args);
         // Student.main(args);
         // Singleton.main(args);

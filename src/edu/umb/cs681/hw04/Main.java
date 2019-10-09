@@ -1,14 +1,7 @@
 package edu.umb.cs681.hw04;
 
-import static java.nio.file.StandardOpenOption.*;
-import java.nio.file.*;
 import java.io.*;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.FileReader;
 import java.util.stream.Stream;
-import java.io.IOException;
 import java.lang.InterruptedException;
 
 public class Main {
@@ -22,15 +15,15 @@ public class Main {
         timeJavaPrimes();
 
         try {
-            runCargo();
+            timeRustPrimes();
         } catch (Exception e) {
-            String apology = "I couldn't find Cargo to compile an included Rust program.  So instead, here are some canned stats from the author's machine:";
+            String apology = "I couldn't find Cargo to compile an included Rust program.  So instead, here is some canned output from the author's machine:";
             System.out.println(apology);
             dumpCanOfStats();
         }
     }
 
-    private static void runCargo() throws IOException, InterruptedException {
+    private static void timeRustPrimes() throws IOException, InterruptedException {
         Runtime rt = Runtime.getRuntime();
         String cmdString = "cargo run --manifest-path src/edu/umb/cs681/hw04/Cargo.toml";
             

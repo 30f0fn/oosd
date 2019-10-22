@@ -27,6 +27,11 @@
     <property name="hwPath" value="${coursePath}/hw${hwID}"/>
   </target>
 
+  <target name="set.hwMainClass">
+    <property name="hwMainClass" value="edu.umb.cs${courseID}.hw${hwID}.Main"/>
+  </target>
+
+  
   <target name="compile">
     <mkdir dir="bin"/>
     <mkdir dir="test/bin"/>
@@ -42,8 +47,8 @@
            <!-- includeantruntime="false"/> -->
   </target>
 
-  <target name="compile.single.hw"
-          depends="set.hwPath">
+  <target name="compile-single"
+          depends="set.hwPath, set.hwMainClass">
     <property name="src.dir" value="src"/>
     <property name="test.src.dir" value="test/src"/>
     <property name="bin.dir" value="bin"/>
@@ -69,7 +74,7 @@
       <testclasses outputdir="test/bin/report">
         <fileset dir="test/bin">
           <!-- given by destdir in compile -->
-          <include name="**/*Test.class"/>
+          <include name="src/${hwPath}/${hw}*Test.class"/>
           <!-- double asterisk is recursive version of * wildcard -->
         </fileset>
         <listener type="legacy-plain" sendSysOut="true" />
@@ -77,11 +82,28 @@
     </junitlauncher>
   </target>
 
-  <target name="jar.single.hw">
+  <target name="test-single">
+    <mkdir dir="test/bin/report"/>
+    <junitlauncher haltOnFailure="true" printSummary="true">
+      <classpath refid="classpath"/>
+      <testclasses outputdir="test/bin/report">
+        <fileset dir="test/bin">
+          <!-- given by destdir in compile -->
+          
+          <include name="test/src/${hwPath}/*Test.class"/>
+          <!-- double asterisk is recursive version of * wildcard -->
+        </fileset>
+        <listener type="legacy-plain" sendSysOut="true" />
+      </testclasses>
+    </junitlauncher>
+  </target>
+
+
+  <target name="jar-single">
     <mkdir dir="bin/jar"/>
     <jar destfile="bin/jar/mw-hw.jar" basedir="bin">
       <manifest>
-        <attribute name="Main-Class" value="${hw.main.class}"/>
+        <attribute name="Main-Class" value="${hwMainClass}"/>
       </manifest>
     </jar>
   </target>
@@ -106,7 +128,7 @@
 
 
   <target name="single"
-          depends="clean, compile.single.hw, test, jar.single.hw, run">
+          depends="clean, compile-single, test-single, jar-single, run">
   </target>
 
   <target name="setup-hw"

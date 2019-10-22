@@ -3,8 +3,8 @@
   <property name="courseID" value="681"/>
   <property name="coursePath" value="edu/umb/cs${courseID}"/>
 
-  <include file="${courseID}.xml"/>
-
+  <!-- only for hw680's bad design -->
+  <!-- <include file="${courseID}.xml"/> -->
 
   <target name="clean">
     <delete dir="bin"/>

@@ -28,13 +28,17 @@ public class Main {
 
     public static void main(String[] args) {
 
-        run(276923, 2);
+        int dividend = 3 * 11 * 31 * 79;
+        
+        run(dividend, 2);
 
-        runStop(276923, 2, 1, 0);
+        runStop(dividend, 2, 1, 0);
 
-        runStop(276923, 2, 1, 10);
+        runStop(dividend, 2, 1, 10);
 
-        runStop(276923, 2, 1, 100);
+        runStop(dividend, 2, 1, 30);
+
+        runStop(dividend, 2, 1, 40);
 
     
     }

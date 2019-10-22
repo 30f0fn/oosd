@@ -15,7 +15,7 @@ class RunnableCancellablePrimeFactorizer extends RunnablePrimeFactorizer {
     RunnableCancellablePrimeFactorizer(long dividend, long from, long to, int latency) {
         super(dividend, from, to);
         this.factors = new LinkedList<Long>();
-        this.latency = latency;
+        this.latency = latency; // to test cancellation
         this.lock = new ReentrantLock();
     }
 
@@ -29,7 +29,7 @@ class RunnableCancellablePrimeFactorizer extends RunnablePrimeFactorizer {
     }
 
     private boolean checkDone() {
-        System.out.printf("");
+        System.out.printf(""); // I don't know why it doesn't work without this
         return this.done; 
     }
 
@@ -44,7 +44,10 @@ class RunnableCancellablePrimeFactorizer extends RunnablePrimeFactorizer {
                     continue;
                 }
                 if(dividend % divisor == 0) {
-                    factors.add(divisor);
+                    Factorizer f = new Factorizer(divisor, 1, 0);
+                    if (f.wasPrime()) {
+                            factors.add(divisor);
+                        }
                     dividend /= divisor;
                 }else {
                     if(divisor==2){ divisor++; }

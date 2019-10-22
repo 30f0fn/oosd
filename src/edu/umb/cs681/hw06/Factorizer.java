@@ -85,4 +85,10 @@ class Factorizer {
         
     }
 
+
+    public boolean wasPrime() {
+        this.run();
+        this.finish();
+        return this.factorsFound.size() == 0;
+    }
 }

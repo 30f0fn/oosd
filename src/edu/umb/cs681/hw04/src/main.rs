@@ -5,7 +5,8 @@ pub struct PrimeGenerator {
 }
 
 impl PrimeGenerator {
-    pub fn new(from: u64, to: u64) -> Result<PrimeGenerator, &'static str>{
+    pub fn new(from: u64, to: u64)
+               -> Result<PrimeGenerator, &'static str> {
         if from >= 1 && to >= from {
             let primes = Vec::new();
             Ok(PrimeGenerator{from, to, primes})

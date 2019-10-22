@@ -11,7 +11,7 @@ class Factorizer {
     private LinkedList<Thread> threads;
     private LinkedList<Long> factorsFound;
 
-    Factorizer(long dividend, int numThreads, int latency) {
+    protected Factorizer(long dividend, int numThreads, int latency) {
 
         this.dividend = dividend;
         this.numThreads = numThreads;

@@ -46,10 +46,11 @@ class RunnableCancellablePrimeFactorizer extends RunnablePrimeFactorizer {
                 if(dividend % divisor == 0) {
                     Factorizer f = new Factorizer(divisor, 1, 0);
                     if (f.wasPrime()) {
-                            factors.add(divisor);
-                        }
+                        // test needed for multithreading
+                        factors.add(divisor);
+                    }
                     dividend /= divisor;
-                }else {
+                } else {
                     if(divisor==2){ divisor++; }
                     else{ divisor += 2; }
                 }

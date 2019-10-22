@@ -10,7 +10,7 @@ class HomeworkRunner {
         edu.umb.cs681.hw04.Main.main(args);
         edu.umb.cs681.hw05.Main.main(args);
         edu.umb.cs681.hw06.Main.main(args);
-        // edu.umb.cs681.hw07.Main.main(args);
+        edu.umb.cs681.hw07.Main.main(args);
         // edu.umb.cs681.hw08.Main.main(args);
         // edu.umb.cs681.hw09.Main.main(args);
         // edu.umb.cs681.hw10.Main.main(args);

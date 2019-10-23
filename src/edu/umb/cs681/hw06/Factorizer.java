@@ -88,7 +88,6 @@ class Factorizer {
                     }
                 });
             });
-        addLastFactor();
     }
 
     private boolean toAdd(long maybeNext) {

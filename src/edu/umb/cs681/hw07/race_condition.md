@@ -44,3 +44,4 @@ To be a bit more explicit, let me write e1,e2,..., a1,a2,..., for the steps 1-4 
 e1, e2, a1, a2, a3, a4, e3, e4.
 
 
+PS. I spent a long time on the coding part of this assignment, but the resulting code quality seems still very poor... sorry.

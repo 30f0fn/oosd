@@ -25,6 +25,7 @@ To this end, we define save() as follows:
 
 ~~~
 if (changed) {
+    changed = false;
     writeToDisk();
 }
 ~~~

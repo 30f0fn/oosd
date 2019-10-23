@@ -10,7 +10,7 @@ class Factorizer {
     private int latency;
     private LinkedList<RunnableCancellablePrimeFactorizer> runnables;
     private LinkedList<Thread> threads;
-    private LinkedList<Long> factorsFound; // for iterating by index
+    private LinkedList<Long> factorsFound;
     private boolean finished = false;
 
     protected Factorizer(long dividend, int numThreads, int latency) {

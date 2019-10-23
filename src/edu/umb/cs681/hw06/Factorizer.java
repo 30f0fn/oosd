@@ -47,7 +47,7 @@ class Factorizer {
             
         threads.forEach( (t) -> {
                 t.start();
-                System.out.printf("\t\tStarting process in thread %d\n", t.getId());
+                // System.out.printf("\t\tStarting process in thread %d\n", t.getId());
             });
         
     }    
@@ -131,11 +131,11 @@ class Factorizer {
 
     private void setDoneAll() {
         runnables.forEach( (r) -> r.setDone());
-        // System.out.printf("setDoneAll\n");
-        threads.forEach( (t) -> {
-                System.out.printf("\t\tStopping process in thread %d\n",
-                                  t.getId());
-            });
+        System.out.printf("\t\tStopping all threads...\n");
+        // threads.forEach( (t) -> {
+                // System.out.printf("\t\tStopping process in thread %d\n",
+                                  // t.getId());
+            // });
     }
 
 }

@@ -4,6 +4,20 @@ import java.util.LinkedList;
 
 public class Main {
 
+    public static void main(String[] args) {
+
+        int dividend = 3 * 11 * 31 * 79;
+        run(dividend, 1);
+        runStop(dividend, 2, 25, 0);
+        runStop(dividend, 2, 1, 30);
+        runStop(dividend, 2, 1, 100);
+
+        dividend = 2 * 17;
+        run(dividend, 1);
+        runStop(dividend, 2, 1, 100);
+
+    }
+
     private static void run(long dividend, int numThreads) {
         Factorizer f = new Factorizer(dividend, numThreads, 0);
         f.run();
@@ -23,18 +37,4 @@ public class Main {
         f.printResults();
     }
 
-    public static void main(String[] args) {
-
-        int dividend = 3 * 11 * 31 * 79;
-        
-        run(dividend, 1);
-
-        runStop(dividend, 2, 25, 0);
-
-        runStop(dividend, 2, 1, 30);
-
-        runStop(dividend, 2, 1, 100);
-
-    
-    }
 }

@@ -16,7 +16,8 @@ together with methods
 * save(), which
     * sets "changed" to false
     * writes file to disk.
-The value of the "changed" field is supposed to record whether the in-memory file contents differs from the data written to disk.  Since writing to disk is expensive, we wish to execute this only when necessary.  To this end, we wish to define save() so that it satisfies this property:
+    
+The value of the "changed" field is supposed to record whether the in-memory file contents differs from the data written to disk.  Since writing to disk is expensive, we wish to execute this only when necessary.  So we try to define save() so that it satisfies this property:
 
 (A) call writeToDisk() only when the value of "changed" is true.
 
@@ -36,10 +37,10 @@ Without synchronization, this approach fails to ensure the desired property (A).
 
 After completing all steps 1-4, the Editor thread then calls writeToDisk().
 
-Now, recall that the AutoSave process also has access to the File object and can set the "changed" variable.  Specifically, it can of course happen that, at some point after step 1 (loading the "changed" variable) but before the file is written to disk, AutoSave acts to call save().  This, too, initiates a sequences of steps 1-4.  Since the two threads are asynchronous, AutoSave's save process may get entirely completed before Editor's save process calls writeToDisk().  Assuming no other processes modify the "changed" variable, it will then happen that Editor calls writeToDisk() while the "changed" variable is set to False, and this violates desired property (A).
+Now, recall that the AutoSave process also has access to the File object and can set the "changed" variable.  Specifically, it can of course happen that, at some point after step 1 (loading the "changed" variable) but before the file is written to disk, AutoSave acts to call save().  This, too, initiates a sequence of steps 1-4.  Since the two threads are asynchronous, AutoSave's save process may get entirely completed before Editor's save process calls writeToDisk().  Assuming no other processes modify the "changed" variable, it will then happen that Editor calls writeToDisk() while the "changed" variable is set to False, and this violates desired property (A).
 
-To be a bit more explicit, let me write e1,e2,..., a1,a2.,,, for the steps 1-4 of File's save() method as instantiated respectively in the Editor and Autosave threads.  Then, the following sequence would be a race condition admitted by the naive implementation described above:
+To be a bit more explicit, let me write e1,e2,..., a1,a2,..., for the steps 1-4 of File's save() method as invoked respectively in the Editor and Autosave threads.  Then, the following sequence would be a race condition admitted by the naive implementation described above:
 
-a1, e1, e2, a2, e3, e4, a3, a4.
+e1, e2, a1, a2, a3, a4, a3, a4.
 
 

@@ -1,6 +1,7 @@
 package edu.umb.cs681.hw06;
 
 import java.util.LinkedList;
+import java.util.ListIterator;
 
 class Factorizer {
 
@@ -9,7 +10,8 @@ class Factorizer {
     private int latency;
     private LinkedList<RunnableCancellablePrimeFactorizer> runnables;
     private LinkedList<Thread> threads;
-    private LinkedList<Long> factorsFound;
+    private LinkedList<Long> factorsFound; // for iterating by index
+    private boolean finished = false;
 
     protected Factorizer(long dividend, int numThreads, int latency) {
 
@@ -50,29 +52,16 @@ class Factorizer {
         
     }    
 
-    public void finish() {
-        threads.forEach( (t) -> {
-                try {
-                    t.join();
-                } catch(InterruptedException e){
-                    e.printStackTrace();
-                }
-            });
-
-        runnables.forEach( (factorizer) ->
-                           factorsFound.addAll(factorizer.getPrimeFactors()) );
-        
+    public void stop() {
+        setDoneAll();
+        joinAll();
+        assembleFactors();
     }
 
-    public void stop() {
-        runnables.forEach( (r) -> r.setDone());
-        threads.forEach( (t) -> {
-                System.out.printf("\t\tStopping process in thread %d\n",
-                                  t.getId());
-            });
-        runnables.forEach( (factorizer) ->
-                           factorsFound.addAll(factorizer.getPrimeFactors()) );
-
+    public void finish() {
+        joinAll();
+        finished = true;
+        assembleFactors();
     }
 
     public LinkedList<Long> getResults() {
@@ -80,15 +69,73 @@ class Factorizer {
     }
 
     public void printResults() {
-
-        System.out.println("\tFinal result: " + factorsFound + "\n");
-        
+        System.out.println("\tFactors found: " + factorsFound + "\n");
     }
-
 
     public boolean wasPrime() {
         this.run();
         this.finish();
         return this.factorsFound.size() == 0;
     }
+
+    private void assembleFactors() {
+        getFromFactorizers();
+        addLastFactor();
+    }
+
+    private void getFromFactorizers() {
+        // factorsFound inherits sortedness from the runnables
+        runnables.stream().forEach((runnable) -> {
+            runnable.getPrimeFactors()
+            .forEach((maybeNext) -> {
+                    {if (toAdd(maybeNext)) {
+                        factorsFound.add(maybeNext);
+                        }
+                    }
+                });
+            });
+        addLastFactor();
+    }
+
+    private boolean toAdd(long maybeNext) {
+        return factorsFound
+            .stream()
+            .allMatch((foundFactor) ->
+                      foundFactor == maybeNext
+                      || maybeNext % foundFactor != 0);
+    }
+
+    private void addLastFactor() {
+        long toAdd = dividend;
+        if (finished) {
+            for (long f: factorsFound) {
+                toAdd /= f;
+            }
+            if (toAdd > 1) {
+                factorsFound.add(toAdd);
+            }
+        }
+    }
+
+    
+    private void joinAll() {
+        threads.forEach( (t) -> {
+                try {
+                    t.join();
+                } catch(InterruptedException e){
+                    e.printStackTrace();
+                }
+            });
+        
+    }
+
+    private void setDoneAll() {
+        runnables.forEach( (r) -> r.setDone());
+        // System.out.printf("setDoneAll\n");
+        threads.forEach( (t) -> {
+                System.out.printf("\t\tStopping process in thread %d\n",
+                                  t.getId());
+            });
+    }
+
 }

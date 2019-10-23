@@ -2,9 +2,6 @@ package edu.umb.cs681.hw06;
 
 import java.util.LinkedList;
 
-// todo  MAIN should exercise setDone method
-
-
 public class Main {
 
     private static void run(long dividend, int numThreads) {
@@ -19,7 +16,7 @@ public class Main {
         f.run();
         try {
             Thread.sleep(patience);
-        } catch(InterruptedException e){
+        } catch (InterruptedException e){
             e.printStackTrace();
         }
         f.stop();
@@ -30,15 +27,13 @@ public class Main {
 
         int dividend = 3 * 11 * 31 * 79;
         
-        run(dividend, 2);
+        run(dividend, 1);
 
-        runStop(dividend, 2, 1, 0);
-
-        runStop(dividend, 2, 1, 10);
+        runStop(dividend, 2, 25, 0);
 
         runStop(dividend, 2, 1, 30);
 
-        runStop(dividend, 2, 1, 40);
+        runStop(dividend, 2, 1, 100);
 
     
     }

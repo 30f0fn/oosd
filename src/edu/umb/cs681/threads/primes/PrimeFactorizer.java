@@ -22,10 +22,11 @@ public class PrimeFactorizer {
 	}
 	
 	public void generatePrimeFactors() {
-		long divisor = 2;
+            long divisor = 2;
 	    while( dividend != 1 && divisor <= to ){
 		    if(dividend % divisor == 0) {
 		        factors.add(divisor);
+                        // System.out.printf("PF: added %d\n", divisor);
 		        dividend /= divisor;
 		    }else {
 		    	if(divisor==2){ divisor++; }

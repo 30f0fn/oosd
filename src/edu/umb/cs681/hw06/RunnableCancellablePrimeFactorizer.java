@@ -11,12 +11,14 @@ class RunnableCancellablePrimeFactorizer extends RunnablePrimeFactorizer {
     private boolean done = false;
     private ReentrantLock lock;
     private int latency;
+    private long divisor;
 
     RunnableCancellablePrimeFactorizer(long dividend, long from, long to, int latency) {
         super(dividend, from, to);
         this.factors = new LinkedList<Long>();
         this.latency = latency; // to test cancellation
         this.lock = new ReentrantLock();
+        this.divisor = from;
     }
 
     public void setDone(){
@@ -28,32 +30,23 @@ class RunnableCancellablePrimeFactorizer extends RunnablePrimeFactorizer {
         }
     }
 
-    private boolean checkDone() {
-        System.out.printf(""); // I don't know why it doesn't work without this
-        return this.done; 
-    }
-
     public void generatePrimeFactors() {
-        long divisor = from;
-        while( !checkDone() && dividend != 1 && divisor <= to ){
+        while (true) {
             try {
-                lock.lock();
+                // give other thread a chance to call setDone() on me
+                // there must be a better way :(
+                Thread.sleep(1);
+            }  catch (InterruptedException e) {
+                e.printStackTrace();
+            } 
+            lock.lock();
+            if (done || dividend == 1 || divisor > to) {
+                lock.unlock();
+                return;
+            }
+            try {
+                factorizingStep();
                 Thread.sleep(latency);
-                if(divisor > 2 && isEven(divisor)) {
-                    divisor++;
-                    continue;
-                }
-                if(dividend % divisor == 0) {
-                    Factorizer f = new Factorizer(divisor, 1, 0);
-                    if (f.wasPrime()) {
-                        // test needed for multithreading
-                        factors.add(divisor);
-                    }
-                    dividend /= divisor;
-                } else {
-                    if(divisor==2){ divisor++; }
-                    else{ divisor += 2; }
-                }
             }  catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
@@ -62,5 +55,22 @@ class RunnableCancellablePrimeFactorizer extends RunnablePrimeFactorizer {
         }
     }
 
-    
+
+    private void factorizingStep() {
+        if(divisor > 2 && isEven(divisor)) {
+            divisor++;
+            return;
+        }
+        if(dividend % divisor == 0) {
+            factors.add(divisor);
+            // System.out.printf("\t\tPF: added %d\n", divisor);
+            dividend /= divisor;
+        } else {
+            int increment = (divisor == 2 ? 1 : 2);
+            divisor = divisor + increment;
+        }
+    };
+
+
 }
+

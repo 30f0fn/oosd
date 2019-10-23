@@ -41,6 +41,6 @@ Now, recall that the AutoSave process also has access to the File object and can
 
 To be a bit more explicit, let me write e1,e2,..., a1,a2,..., for the steps 1-4 of File's save() method as invoked respectively in the Editor and Autosave threads.  Then, the following sequence would be a race condition admitted by the naive implementation described above:
 
-e1, e2, a1, a2, a3, a4, a3, a4.
+e1, e2, a1, a2, a3, a4, e3, e4.
 
 

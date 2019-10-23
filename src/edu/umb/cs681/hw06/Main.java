@@ -8,9 +8,11 @@ public class Main {
 
         int dividend = 3 * 11 * 31 * 79;
         run(dividend, 1);
-        runStop(dividend, 2, 25, 0);
+        runStop(dividend, 2, 1, 0);
+        runStop(dividend, 2, 1, 5);
+        runStop(dividend, 2, 1, 10);
         runStop(dividend, 2, 1, 30);
-        runStop(dividend, 2, 1, 100);
+        runStop(dividend, 2, 1, 60);
 
         dividend = 2 * 17;
         run(dividend, 1);

@@ -33,25 +33,19 @@ class RunnableCancellablePrimeFactorizer extends RunnablePrimeFactorizer {
     public void generatePrimeFactors() {
         while (true) {
             try {
-                // give other thread a chance to call setDone() on me
-                // there must be a better way :(
-                Thread.sleep(1);
-            }  catch (InterruptedException e) {
-                e.printStackTrace();
-            } 
-            lock.lock();
-            if (done || dividend == 1 || divisor > to) {
-                lock.unlock();
-                return;
-            }
-            try {
-                factorizingStep();
                 Thread.sleep(latency);
-            }  catch (InterruptedException e) {
+            } catch (InterruptedException e) {
                 e.printStackTrace();
+            }
+            lock.lock();
+            try {
+                if (done || dividend == 1 || divisor > to) {
+                    return;
+                }
             } finally {
                 lock.unlock();
             }
+            factorizingStep();
         }
     }
 

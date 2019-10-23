@@ -72,12 +72,6 @@ class Factorizer {
         System.out.println("\tFactors found: " + factorsFound + "\n");
     }
 
-    public boolean wasPrime() {
-        this.run();
-        this.finish();
-        return this.factorsFound.size() == 0;
-    }
-
     private void assembleFactors() {
         getFromFactorizers();
         addLastFactor();

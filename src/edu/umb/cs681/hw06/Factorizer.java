@@ -10,7 +10,7 @@ class Factorizer {
     private int latency;
     private LinkedList<RunnableCancellablePrimeFactorizer> runnables;
     private LinkedList<Thread> threads;
-    private LinkedList<Long> factorsFound; // for iterating by index
+    private LinkedList<Long> factorsFound;
     private boolean finished = false;
 
     protected Factorizer(long dividend, int numThreads, int latency) {
@@ -72,12 +72,6 @@ class Factorizer {
         System.out.println("\tFactors found: " + factorsFound + "\n");
     }
 
-    public boolean wasPrime() {
-        this.run();
-        this.finish();
-        return this.factorsFound.size() == 0;
-    }
-
     private void assembleFactors() {
         getFromFactorizers();
         addLastFactor();
@@ -94,7 +88,6 @@ class Factorizer {
                     }
                 });
             });
-        addLastFactor();
     }
 
     private boolean toAdd(long maybeNext) {

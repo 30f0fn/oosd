@@ -3,7 +3,7 @@ package edu.umb.cs681.hw05;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("HW05...\n\tRunning RunnableCancellablePrimeGenerator for 1 second...");
+        System.out.println("HW05...\n\tRunning RunnableCancellablePrimeGenerator for 1 ms...");
         RunnableCancellablePrimeGenerator gen =
             new RunnableCancellablePrimeGenerator(1, 100);
         try {

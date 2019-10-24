@@ -7,13 +7,14 @@ import java.util.LinkedList;
 import edu.umb.cs681.threads.primes.RunnablePrimeFactorizer;
 
 
-class RunnableCancellablePrimeFactorizer extends RunnablePrimeFactorizer {
-    private boolean done = false;
+public class RunnableCancellablePrimeFactorizer extends RunnablePrimeFactorizer {
+    private volatile boolean done = false;
     private ReentrantLock lock;
     private int latency;
     private long divisor;
 
-    RunnableCancellablePrimeFactorizer(long dividend, long from, long to, int latency) {
+
+    public RunnableCancellablePrimeFactorizer(long dividend, long from, long to, int latency) {
         super(dividend, from, to);
         this.factors = new LinkedList<Long>();
         this.latency = latency; // to test cancellation
@@ -22,11 +23,11 @@ class RunnableCancellablePrimeFactorizer extends RunnablePrimeFactorizer {
     }
 
     public void setDone(){
-        lock.lock();
+        setLock();
         try {
             done = true;
         } finally {
-            lock.unlock();
+            unsetLock();
         }
     }
 
@@ -36,21 +37,21 @@ class RunnableCancellablePrimeFactorizer extends RunnablePrimeFactorizer {
                 Thread.sleep(latency);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
-            lock.lock();
+            }  // pace execution to make cancellation predictable (for testing)
+            setLock();
             try {
                 if (done || dividend == 1 || divisor > to) {
                     return;
                 }
             } finally {
-                lock.unlock();
+                unsetLock();
             }
             factorizingStep();
         }
     }
 
 
-    private void factorizingStep() {
+    public void factorizingStep() {
         if(divisor > 2 && isEven(divisor)) {
             divisor++;
             return;
@@ -65,6 +66,33 @@ class RunnableCancellablePrimeFactorizer extends RunnablePrimeFactorizer {
         }
     };
 
+    protected void setLock() {
+        lock.lock();
+    }
+
+    protected void unsetLock() {
+        lock.unlock();
+    }
+
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public int getLatency() {
+        return latency;
+    }
+
+    public long getDivisor() {
+        return divisor;
+    }
+
+    public long getDividend() {
+        return dividend;
+    }
+
 
 }
+
+
 

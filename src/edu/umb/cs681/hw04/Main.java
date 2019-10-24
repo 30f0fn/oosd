@@ -7,8 +7,9 @@ import java.lang.InterruptedException;
 public class Main {
 
     private static Integer[] threadNums = {1, 2, 4, 8, 16};
-    private static long from = 1, to = 2000000;
-
+    // private static long from = 1, to = 2000000;
+    // //take off a 0 to speed things up
+    private static long from = 1, to = 200000;
     public static void main(String[] args) {
         System.out.println("HW04...");
 

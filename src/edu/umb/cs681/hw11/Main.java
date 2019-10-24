@@ -1,12 +1,11 @@
-package edu.umb.cs681.hw06;
+package edu.umb.cs681.hw11;
 
 import java.util.LinkedList;
 
 public class Main {
 
     public static void main(String[] args) {
-
-        System.out.println("HW010...");
+        System.out.println("HW11...");
         int dividend = 3 * 11 * 31 * 79;
         run(dividend, 1);
         runStop(dividend, 2, 1, 0);
@@ -22,14 +21,14 @@ public class Main {
     }
 
     private static void run(long dividend, int numThreads) {
-        Factorizer f = new Factorizer(dividend, numThreads, 0);
+        GracefulFactorizer f = new GracefulFactorizer(dividend, numThreads, 0);
         f.run();
         f.finish();
         f.printResults();
     }
 
     private static void runStop(long dividend, int numThreads, int latency, int patience) {
-        Factorizer f = new Factorizer(dividend, numThreads, latency);
+        GracefulFactorizer f = new GracefulFactorizer(dividend, numThreads, latency);
         f.run();
         try {
             Thread.sleep(patience);
@@ -38,6 +37,7 @@ public class Main {
         }
         f.stop();
         f.printResults();
+
     }
 
 }

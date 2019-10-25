@@ -30,13 +30,26 @@ public class RunnableCancellablePrimeGenerator extends RunnablePrimeGenerator {
                     this.primes.clear();
                     break;
                 }
-                if (isPrime(n)){
-                    this.primes.add(n);
-                }
             } finally {
                 lock.unlock();
             };
+            if (isPrime(n)){
+                this.primes.add(n);
+            }
         }
+    }
+
+    protected void setLock() {
+        lock.lock();
+    }
+
+    protected void unsetLock() {
+        lock.unlock();
+    }
+
+
+    public boolean isDone() {
+        return done;
     }
 
 }

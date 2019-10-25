@@ -26,7 +26,7 @@ public class RunnablePrimeGenerator extends PrimeGenerator implements Runnable {
 		gen2.getPrimes().forEach( (Long prime)->System.out.print(prime + ", ") );
 		
 		long primeNum = gen1.getPrimes().size() + gen2.getPrimes().size();
-		System.out.println("\n" + primeNum + " prime numbers are found in total.");
+		System.out.println("\n\t" + primeNum + " prime numbers are found in total.");
         
 
 	}

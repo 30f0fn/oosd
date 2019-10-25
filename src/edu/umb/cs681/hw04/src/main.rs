@@ -138,7 +138,9 @@ fn main() {
     use std::time::{Instant};
 
     let thread_nums = [1, 2, 4, 8, 16];
-    let search_max = 2000000;
+    // let search_max = 2000000;
+    // // lop off a zero for convenience 
+    let search_max = 200000;
 
     for num_threads in thread_nums.iter() {
         let start_time = Instant::now();

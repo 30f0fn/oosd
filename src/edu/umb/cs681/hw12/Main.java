@@ -12,7 +12,7 @@ public class Main {
     
     public static void main(String[] args) {
         System.out.println("HW 12...");
-        int numThreads = 10;
+        int numThreads = 1;
         LinkedList<Thread> threads = new LinkedList<Thread>();
         LinkedList<RequestHandler> runnables = new LinkedList<RequestHandler>();
         IntStream.range(0, numThreads).forEach((i) -> {
@@ -21,7 +21,8 @@ public class Main {
                 runnables.add(handler);
                 threads.add(thread);
             });
-        System.out.println("\tStarting 10 parallel instances of RequestHandler...");
+        System.out.printf("\tStarting %d parallel instances of RequestHandler...\n",
+                          numThreads);
         threads.forEach((t) -> t.start());
         try {
             Thread.sleep(1000);            
@@ -29,8 +30,6 @@ public class Main {
             
         }
         runnables.forEach( (r) -> r.gracefulStop());
-        // runnables.forEach( (r) -> r.setDone());
-        // threads.forEach( (t) -> t.interrupt());
     }
 
 }

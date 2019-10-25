@@ -21,7 +21,7 @@ class RequestHandler extends GracefullyStoppingRunnable {
         System.out.printf("\tRequestHandler %d: file %s returned for the %d%s time\n",
                           getThread().getId(),
                           file.getFileName(), count,
-                          count==1?"st":"th");
+                          count==1?"st":count==2?"nd":"th");
     };
 
     protected RequestHandler() {

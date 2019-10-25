@@ -47,6 +47,24 @@
            <!-- includeantruntime="false"/> -->
   </target>
 
+  <!-- <target name="compile-single" -->
+  <!--         depends="set.hwPath, set.hwMainClass"> -->
+  <!--   <property name="src.dir" value="src/${hwPath}"/> -->
+  <!--   <property name="test.src.dir" value="test/src/${hwPath}"/> -->
+  <!--   <property name="bin.dir" value="bin"/> -->
+  <!--   <property name="test.bin.dir" value="test/bin"/> -->
+  <!--   <!-\- <property name="bin.dir" value="bin/${hw.path}"/> -\-> -->
+  <!--   <!-\- <property name="test.bin.dir" value="test/bin/${hw.path}"/> -\-> -->
+  <!--   <mkdir dir="${bin.dir}"/> -->
+  <!--   <mkdir dir="${test.bin.dir}"/> -->
+  <!--   <javac srcdir="${src.dir}" destdir="${bin.dir}" -->
+  <!--          includeantruntime="false"/> -->
+  <!--   <javac srcdir="${test.src.dir}" destdir="${test.bin.dir}" -->
+  <!--          classpathref="classpath" -->
+  <!--          includeantruntime="false"/> -->
+  <!-- </target> -->
+
+
   <target name="compile-single"
           depends="set.hwPath, set.hwMainClass">
     <property name="src.dir" value="src"/>

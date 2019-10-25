@@ -12,7 +12,7 @@ public class Main {
     
     public static void main(String[] args) {
         System.out.println("HW 12...");
-        int numThreads = 1;
+        int numThreads = 10;
         LinkedList<Thread> threads = new LinkedList<Thread>();
         LinkedList<RequestHandler> runnables = new LinkedList<RequestHandler>();
         IntStream.range(0, numThreads).forEach((i) -> {

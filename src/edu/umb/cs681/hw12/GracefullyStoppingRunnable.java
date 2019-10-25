@@ -31,7 +31,7 @@ abstract class GracefullyStoppingRunnable implements Runnable {
             } finally {
                 unsetLock();
             };
-            this.getMethodToRun().run();
+            getMethodToRun().run();
             try {
                 Thread.sleep(100);            
             } catch (InterruptedException e) {

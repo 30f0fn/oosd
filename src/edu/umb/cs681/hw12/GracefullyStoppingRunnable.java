@@ -3,7 +3,7 @@ package edu.umb.cs681.hw12;
 import java.util.concurrent.locks.ReentrantLock;
 
 
-abstract class GracefullyStoppingRunnable implements Runnable {
+public abstract class GracefullyStoppingRunnable implements Runnable {
 
     private boolean done = false;
     private ReentrantLock lock;
@@ -42,8 +42,7 @@ abstract class GracefullyStoppingRunnable implements Runnable {
 
     protected void unsetLock() {
         lock.unlock();
-    }
-    
+    }    
 
     public Thread getThread() {
         return Thread.currentThread();

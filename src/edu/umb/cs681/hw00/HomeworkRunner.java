@@ -16,7 +16,7 @@ class HomeworkRunner {
         edu.umb.cs681.hw10.Main.main(args);
         edu.umb.cs681.hw11.Main.main(args);
         edu.umb.cs681.hw12.Main.main(args);
-        // edu.umb.cs681.hw13.Main.main(args);
+        edu.umb.cs681.hw13.Main.main(args);
         // edu.umb.cs681.hw14.Main.main(args);
         // edu.umb.cs681.hw15.Main.main(args);
     }

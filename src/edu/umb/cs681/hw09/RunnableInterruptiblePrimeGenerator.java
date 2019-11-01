@@ -5,7 +5,7 @@ import edu.umb.cs681.threads.primes.RunnablePrimeGenerator;
 
 
 public class RunnableInterruptiblePrimeGenerator extends RunnablePrimeGenerator {
-    private volatile boolean done = false;
+    private boolean done = false;
     private ReentrantLock lock = new ReentrantLock();
 	
     public RunnableInterruptiblePrimeGenerator(long from, long to) {

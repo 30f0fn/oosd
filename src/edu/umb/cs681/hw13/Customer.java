@@ -11,20 +11,23 @@ public class Customer {
         this.lock = new ReentrantLock();
     }
     
+    // public void setAddress(Address addr) {
+    //     lock.lock();
+    //     try {
+    //         address = addr;
+    //     } finally {
+    //         lock.unlock();
+    //     }        
+    // }
+
     public void setAddress(Address addr) {
         lock.lock();
         try {
+            System.out.printf("\tCustomer.setAddress (thread %d): %s street -> %s street\n",
+                              Thread.currentThread().getId(),
+                              address.getStreet(),
+                              addr.getStreet());
             address = addr;
-        } finally {
-            lock.unlock();
-        }        
-    }
-
-    public void setAddressNoisily(Address addr) {
-        lock.lock();
-        try {
-            address = addr;
-            System.out.printf("\tSetting address to \n\t\t%s\n", addr);
         } finally {
             lock.unlock();
         }        

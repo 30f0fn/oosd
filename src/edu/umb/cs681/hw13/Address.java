@@ -15,6 +15,10 @@ public final class Address {
         this.zipcode = zipcode;
     }
 
+    public String getStreet() {
+        return street;
+    }
+
     public boolean equals(Address other) {
         return this.street == other.street && this.city == other.city && this.state == other.state && this.zipcode == other.zipcode;
     }

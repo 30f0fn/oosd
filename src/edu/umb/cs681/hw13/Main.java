@@ -17,7 +17,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("HW 13...");
         Customer cus = new Customer(randomAddress());
-        System.out.printf("Created customer with random address %s",
+        System.out.printf("\tMain: created customer with this random address:\n\t\t%s\n",
                           cus.getAddress());
         int numThreads = 8;
         LinkedList<Thread> threads = new LinkedList<Thread>();
@@ -25,12 +25,10 @@ public class Main {
             new LinkedList<GracefullyStoppingRunnable>();
         IntStream.range(0, numThreads).forEach((i) -> {        
                 Runnable r  = () -> {
-                    cus.setAddressNoisily(randomAddress());
+                    cus.setAddress(randomAddress());
                     try {
-                        Thread.sleep(125);
-                    } catch (InterruptedException e) {
-                        System.out.printf("thread interrupted!\n");
-                    }
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {}
                 };
                 GracefullyStoppingRunnable gsr =
                     GracefullyStoppingRunnable.fromRunnable(r);
@@ -40,7 +38,7 @@ public class Main {
                 thread.start();
             });
         try {
-            Thread.sleep(1000);
+            Thread.sleep(200);
                 } catch (InterruptedException e) {
             System.out.printf("HW 13 interrupted");
         };

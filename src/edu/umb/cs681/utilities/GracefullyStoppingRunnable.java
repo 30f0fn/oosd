@@ -19,7 +19,7 @@ public class GracefullyStoppingRunnable implements Runnable {
             setLock();
             try {
                 if (done) {
-                    System.out.printf("\tRequestHandler %d: stopping\n", getThread().getId());
+                    // System.out.printf("\tRequestHandler %d: stopping\n", getThread().getId());
                     break;
                 }
             } finally {

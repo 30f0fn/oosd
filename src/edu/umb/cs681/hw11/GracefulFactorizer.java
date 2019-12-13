@@ -35,7 +35,7 @@ public class GracefulFactorizer extends BaseFactorizer {
     private void setDoneAll() {
         runnables.forEach( (r) -> r.setDone());
         threads.forEach( (t) -> t.interrupt());
-        // ABOVE LINE NEW FOR HW 10!
+        // ABOVE LINE NEW FOR TWO-STEP TERMINATION IN HW 10!
         System.out.printf("\t\tStopping all threads...\n");
     }
 

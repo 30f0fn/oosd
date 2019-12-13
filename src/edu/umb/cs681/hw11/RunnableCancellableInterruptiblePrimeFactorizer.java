@@ -10,7 +10,6 @@ public class RunnableCancellableInterruptiblePrimeFactorizer extends RunnableCan
     }
 
     public void generatePrimeFactors() {
-        // the only method here which differs from hw06, and difference seems trivial
         while (true) {
             this.setLock();
             try {

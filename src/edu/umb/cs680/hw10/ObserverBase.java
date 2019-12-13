@@ -4,13 +4,8 @@ import java.util.LinkedList;
 
 abstract class ObserverBase {
     
-    private LinkedList<StockEvent> receivedStockEvents;
-    private LinkedList<DJIAEvent> receivedDJIAEvents;
-
-    protected ObserverBase() {
-        receivedStockEvents = new LinkedList<StockEvent>();
-        receivedDJIAEvents = new LinkedList<DJIAEvent>();    
-    }
+    private LinkedList<StockEvent> receivedStockEvents = new LinkedList<StockEvent>();
+    private LinkedList<DJIAEvent> receivedDJIAEvents = new LinkedList<DJIAEvent>();
 
     public LinkedList<StockEvent> getReceivedStockEvents() {
         return receivedStockEvents;

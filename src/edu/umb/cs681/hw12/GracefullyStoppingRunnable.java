@@ -18,7 +18,8 @@ public abstract class GracefullyStoppingRunnable implements Runnable {
             setLock();
             try {
                 if (done) {
-                    System.out.printf("\tRequestHandler %d: stopping\n", getThread().getId());
+                    // System.out.printf("\tRequestHandler %d: stopping\n",
+                                      // Thread.currentThread().getId());
                     break;
                 }
             } finally {
@@ -44,15 +45,11 @@ public abstract class GracefullyStoppingRunnable implements Runnable {
         lock.unlock();
     }    
 
-    public Thread getThread() {
-        return Thread.currentThread();
-    }
-
     public void gracefulStop() {
         setLock();
         try {
             done = true;
-            getThread().interrupt();
+            Thread.currentThread().interrupt();
         } finally {
             unsetLock();
         }

@@ -7,16 +7,17 @@ public class Main {
     
     public static void main(String[] args) {
         System.out.println("HW 12...");
+        AccessCounter counter = new AccessCounter();
         int numThreads = 10;
         LinkedList<Thread> threads = new LinkedList<Thread>();
         LinkedList<RequestHandler> runnables = new LinkedList<RequestHandler>();
         IntStream.range(0, numThreads).forEach((i) -> {
-                RequestHandler handler = new RequestHandler();
+                RequestHandler handler = new RequestHandler(counter);
                 Thread thread = new Thread(handler);
                 runnables.add(handler);
                 threads.add(thread);
             });
-        System.out.printf("\tStarting %d parallel instances of RequestHandler...\n",
+        System.out.printf("\tMain.main: starting %d parallel instances of RequestHandler...\n",
                           numThreads);
         threads.forEach((t) -> t.start());
         try {
@@ -25,6 +26,9 @@ public class Main {
             e.printStackTrace();
         }
         runnables.forEach( (r) -> r.gracefulStop());
+        threads.forEach((t) -> {try {t.join();} catch (InterruptedException e) {}});
+        System.out.printf("\tMain.main: done\n");
+        counter.printData();
     }
 
 }

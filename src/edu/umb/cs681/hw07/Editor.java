@@ -28,7 +28,7 @@ public class Editor implements Runnable {
                 openFile.change(newContents);
                 System.out.printf("\tEditor: saving...\n");
                 openFile.save();
-                Thread.sleep(1000);            
+                Thread.sleep(200);            
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {

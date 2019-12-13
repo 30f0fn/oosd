@@ -24,7 +24,7 @@ public class AutoSaver implements Runnable {
                 }
                 System.out.printf("Autosaver: saving...\n");
                 theFile.save();
-                Thread.sleep(2000);
+                Thread.sleep(100);
             }  catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {

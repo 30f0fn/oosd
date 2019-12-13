@@ -21,7 +21,7 @@ public class Main {
         autoSaverThread.start();
 
         try {
-            Thread.sleep(10000);
+            Thread.sleep(1000);
             editor.setDone();
             autoSaver.setDone();
         } catch (InterruptedException e) {

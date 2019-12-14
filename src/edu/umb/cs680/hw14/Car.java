@@ -38,8 +38,12 @@ public class Car {
     }
 
     public String toString() {
-        return String.format("%s %s %d %d %d", make, model, mileage, year, price);
+        return String.format("%s %s %d", make, model, year);
     }
+
+    // public String toString() {
+    //     return String.format("%s %s %d, for $%.0f", make, model, year, price);
+    // }
 
     public static void main(String args[]) {
         Car car = new Car("Toyota", "4Runner", 351999, 1994, 500);

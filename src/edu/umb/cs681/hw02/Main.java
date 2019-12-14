@@ -11,6 +11,15 @@ import edu.umb.cs680.hw14.Car;
 
 public class Main {
 
+    public static Car[] cars = {
+        new Car("Toyota", "RAV4", 0, 2020, 26770f),
+        new Car("Subaru", "Forester", 0, 2020, 25505f),
+        new Car("Porsche", "Macan", 0, 2020, 51150f),
+        new Car("Volvo", "XC-60", 0, 2020, 41145f),
+        new Car("Mercedes-AMG", "GLC43", 0, 2020, 60495f)
+    };
+
+
     private static <T> BinaryOperator<T>
         nullFriendlyComp(BinaryOperator<T> f) {
         return (T m, T n) -> m == null ? n : f.apply(m, n);
@@ -31,11 +40,6 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.printf("HW02...\n");
-        Car[] cars = {new Car("Toyota", "RAV4", 0, 2020, 26770f),
-                      new Car("Subaru", "Forester", 0, 2020, 25505f),
-                      new Car("Porsche", "Macan", 0, 2020, 51150f),
-                      new Car("Volvo", "XC-60", 0, 2020, 41145f),
-                      new Car("Mercedes-AMG", "GLC43", 0, 2020, 60495f)};
         
         Integer carCount = getCarCount(Stream.of(cars));
         Float maxCarPrice = getXmostCarPrice(Stream.of(cars), Float::max).get();

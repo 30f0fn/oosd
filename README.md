@@ -1,3 +1,5 @@
+Homework for UMB CS 680 and 681 (object-oriented software development, in Java).
+
 To compile, test and run all included hw from cs 681, please do
 
 `ant -lib $JUNIT`
